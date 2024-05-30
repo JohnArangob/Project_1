@@ -7,9 +7,13 @@ public class PlayerVariables : MonoBehaviour
     Movements movements;
 
     public float speed = 5f;
-    public float rotationSpeed = 1400f;
+    public float rotationSpeed = 720f;
     public float movInX;
     public float movInZ;
+    public int hp;
+    public int damageSword;
+    public int damageDistance;
+    public Animator anim;
 
     private void Start()
     {

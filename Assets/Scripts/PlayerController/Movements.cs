@@ -23,6 +23,7 @@ public class Movements : MonoBehaviour
     {
         mX = Input.GetAxis("Horizontal");
         mZ = Input.GetAxis("Vertical");
+        
     }
 
     private void FixedUpdate()
@@ -34,7 +35,7 @@ public class Movements : MonoBehaviour
     {
         Vector3 movement = new Vector3(mX, 0, mZ).normalized;
 
-        if (movement.magnitude >= 0.5f)
+        if (movement.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg;
 
@@ -42,10 +43,11 @@ public class Movements : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rb.MovePosition(transform.position + moveDirection * playerVariables.speed * Time.deltaTime);
-
+            rb.velocity = moveDirection * playerVariables.speed;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
         }
     }
-
-    
 }
