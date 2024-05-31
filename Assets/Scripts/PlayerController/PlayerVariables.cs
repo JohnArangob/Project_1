@@ -10,10 +10,27 @@ public class PlayerVariables : MonoBehaviour
     public float rotationSpeed = 720f;
     public float movInX;
     public float movInZ;
+
     public int hp;
-    public int damageSword;
-    public int damageDistance;
     public Animator anim;
+    
+    public List<Weapon> weapons;
+    public Weapon currentWeapon;
+    private int _currentIndex;
+
+    public void NextWeapon()
+    {
+        _currentIndex++;
+        _currentIndex %= weapons.Count;
+        currentWeapon = weapons[_currentIndex];
+    }
+
+    public void PrevWeapon()
+    {
+        _currentIndex--;
+        _currentIndex %= weapons.Count;
+        currentWeapon = weapons[_currentIndex];
+    }
 
     private void Start()
     {
