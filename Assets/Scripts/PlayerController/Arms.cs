@@ -23,10 +23,17 @@ public class Arms : MonoBehaviour
             DesactivaArms();
         }
     }
+    public void ActivateCollidersArms()
+    {
+        for (int i = 0; i < armsSword.Length; i++)
+        {
+            if()
+        }
+    }
 
     public void DesactiveCollidersArms()
     {
-        for (armsSword[i] != null)
+        for (int i = 0; i < armsSword.Length; i++)
         {
             armsSword[i].enabled = false;
         }
