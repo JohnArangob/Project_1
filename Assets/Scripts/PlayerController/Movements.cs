@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movements : MonoBehaviour
 {
-    PlayerVariables playerVariables;
+    
     Rigidbody rb;
     public float mX;
     public float mZ;
@@ -13,16 +13,16 @@ public class Movements : MonoBehaviour
 
     void Start()
     {
-        playerVariables = GetComponent<PlayerVariables>();
+        
         rb = GetComponent<Rigidbody>();
-        Vr = playerVariables.rotationSpeed;
+        Vr = PlayerVariables.instance.rotationSpeed;
     }
 
 
     void Update()
     {
-        mX = Input.GetAxis("Horizontal");
-        mZ = Input.GetAxis("Vertical");
+        mX = Input.GetAxisRaw("Horizontal");
+        mZ = Input.GetAxisRaw("Vertical");
         
     }
 
@@ -43,7 +43,7 @@ public class Movements : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rb.velocity = moveDirection * playerVariables.speed;
+            rb.velocity = moveDirection * PlayerVariables.instance.speed;
         }
         else
         {

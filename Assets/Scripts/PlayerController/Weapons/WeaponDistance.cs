@@ -1,31 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class WeaponDistance : Weapon
 {
-    public override int DamageAmount(Vector3 position)
+    public PlayerVariables playerVariables;
+    private Projectile _proyectile;
+
+    //Constructor
+    public WeaponDistance(int _damageAmount)
     {
-        throw new System.NotImplementedException();
+        DamageAmount = _damageAmount;
+       
     }
 
-    public override void nose()
+    public override void LevelUp()
     {
         throw new System.NotImplementedException();
     }
 
     public override void Use(Vector3 direction)
     {
-        throw new System.NotImplementedException();
-    }
+        _proyectile = new Projectile(DamageAmount);
+        playerVariables = PlayerVariables.instance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        
+        GameObject projectile = UnityEngine.GameObject.Instantiate(PlayerVariables.instance.projectilePrefab,PlayerVariables.instance.shootPoint.position, Quaternion.identity);
+
+       
+        Projectile projectileComponent = projectile.GetComponent<Projectile>();
+        if (projectileComponent != null)
+        {
+            projectileComponent.damage = DamageAmount;
+            projectileComponent.speed = 10f; 
+        }
+        projectile.transform.forward = direction;
         
     }
-
-    // Update is called once per frame
-   
-
 }
+
+
+

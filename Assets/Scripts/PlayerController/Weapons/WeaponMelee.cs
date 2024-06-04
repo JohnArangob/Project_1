@@ -1,37 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class WeaponMelee : Weapon
 {
+    public PlayerVariables playerVariables;
     
-
-    void Use()
+    
+    public WeaponMelee(int _damageAmount, Collider _weaponCollider)
     {
-
+        DamageAmount = _damageAmount;
+        weaponCollider = _weaponCollider;
     }
-    void ActivateCollidersArms()
+    void ActivateCollidersWeapon()
     {
-        
+        weaponCollider.enabled = true;
     }
 
-    void DesactiveCollidersArms()
+    void DesactiveCollidersWeapon()
     {
-           
+        weaponCollider.enabled = false;
     }
 
     public override void Use(Vector3 direction)
     {
-        ActivateCollidersArms();
+        playerVariables = PlayerVariables.instance;
+        ActivateCollidersWeapon();
+        DesactiveCollidersWeapon();
+        if (weaponCollider == false)
+        {
+            Debug.Log("No hay nada");
+        }
+        else
+        {
+            Debug.Log("Si hay alguito");
+        }
     }
 
-    public override void nose()
+    public override void LevelUp()
     {
-        DesactiveCollidersArms();
-    }
-
-    public override int DamageAmount(Vector3 position)
-    {
-        return damageAmount;
+        throw new System.NotImplementedException();
     }
 }
