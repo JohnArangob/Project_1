@@ -27,13 +27,59 @@ public class PlayerVariables : MonoBehaviour
     public bool isDashing;
     public bool unLockDash;
 
+    public int hp;
+    public Animator anim;
 
+    [Header("Weapon")]
+    public List<Weapon> weapons = new List<Weapon>();
+    public Weapon currentWeapon;
+    private int _currentIndex;
 
+    [Header("WeaponDistance")]
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+
+    [Header("WeaponMelee")]
+    public GameObject weaponObjec;
+    private Collider _WeaponCollider;
+
+    [Header("Singleton")]
+    public static PlayerVariables instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
     private void Start()
     {
         movements = GetComponent<Movements>();
         attack = GetComponent<Attack>();
         playerLoctions = GetComponent<PlayerLoctions>();
+
+        weapons.Add(new WeaponDistance(20));
+        weapons.Add(new WeaponMelee(50, _WeaponCollider));
+
+        
+    }
+    public void NextWeapon()
+    {
+        _currentIndex++;
+        _currentIndex %= weapons.Count;
+        currentWeapon = weapons[_currentIndex];
+    }
+
+    public void PrevWeapon()
+    {
+        _currentIndex = _currentIndex - 1 + weapons.Count;
+        _currentIndex %= weapons.Count;
+        currentWeapon = weapons[_currentIndex];
     }
 
     private void Update()
