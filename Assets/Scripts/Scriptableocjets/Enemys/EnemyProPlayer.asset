@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9209a55a0ea8e22408310a6198ab8714, type: 3}
-  m_Name: Enemy1
-  m_EditorClassIdentifier: 
-  estado: 0
-  distanciaSeguir: 1.28
-  distanciaAtacar: 0.97
-  distanciaEscapar: 2
-  autoSeleccionPlayer: 1
+  m_Script: {fileID: 0}
+  m_Name: EnemyProPlayer
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProPlayer
+  estado: 2
+  distanciaSeguir: 1
+  distanciaAtacar: 2
+  distanciaEscapar: 3
   target: {fileID: 0}
-  distancia: 7.543638
+  distancia: 0
   vivo: 1

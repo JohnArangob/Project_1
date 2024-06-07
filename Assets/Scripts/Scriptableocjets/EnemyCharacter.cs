@@ -3,34 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using System;
+using Debug = UnityEngine.Debug;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-[CreateAssetMenu(fileName = "Enemy", menuName = "Enemys/Base")]
-public class EnemyCharacter : ScriptableObject
+
+public abstract class EnemyCharacter : ScriptableObject
 {
     
     public Estados estado;
-    //public Transform enemy;
     public float distanciaSeguir;
     public float distanciaAtacar;
     public float distanciaEscapar;
     
-    public bool autoSeleccionPlayer = true;
     public Transform target;
     public float distancia;
 
     public bool vivo = true;
-    public void Position()
+    
+    public void Position(Transform transformTarget)
     {
-        if (autoSeleccionPlayer)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-        
-        
+        target = transformTarget;
     }
 
     public void CheckEstado()
@@ -49,10 +44,7 @@ public class EnemyCharacter : ScriptableObject
             case Estados.dead:
                 EstadoMuerto();
                 break;
-            default:
-                break;
         }
-        return;
     }
     public void CambairEstado(Estados e)
     {
@@ -67,8 +59,6 @@ public class EnemyCharacter : ScriptableObject
             case Estados.dead:
                 vivo = false;
                 break;
-            default:
-                break;
         }
         estado = e;
     }
@@ -78,8 +68,8 @@ public class EnemyCharacter : ScriptableObject
         {
             CambairEstado(Estados.seguir);
         }
-        return;
     }
+    
     public virtual void EstadoSeguir()
     {
         if (distancia < distanciaAtacar)
@@ -90,33 +80,33 @@ public class EnemyCharacter : ScriptableObject
         {
             CambairEstado(Estados.idle);
         }
-        return;
     }
+    
     public virtual void EstadoAtacar()
     {
         if (distancia > distanciaAtacar + 0.05f)
         {
             CambairEstado(Estados.seguir);
         }
-
-        return;
     }
+    
     public virtual void EstadoMuerto()
     {
-        return;
+        
     }
 
    public IEnumerator CalculateDistance(Transform posicionenemigo)
     {
         while (vivo)
         {
-            if (target != null)
+            if (target)
             {
                 distancia = Vector3.Distance(posicionenemigo.position ,target.transform.position);
                 yield return new WaitForSeconds(0.3f);
             }
         }
     }
+   
 #if UNITY_EDITOR
     public void OnDrawGuizmosSelected(Transform enemy)
     {
@@ -133,6 +123,35 @@ public class EnemyCharacter : ScriptableObject
         int icono = (int)estado;
         icono++;
         Gizmos.DrawIcon(enemy.position + Vector3.up * 1.2f, "01.png", false);
+    }
+}
+
+[CreateAssetMenu(menuName = "Create EnemyProPlayer", fileName = "EnemyProPlayer", order = 0)]
+class EnemyProPlayer : EnemyCharacter
+{
+    public override void EstadoIdle()
+    {
+        base.EstadoIdle();
+        UnityEngine.Debug.Log("Kieto");
+    }
+
+    public override void EstadoAtacar()
+    {
+        base.EstadoAtacar();
+        UnityEngine.Debug.Log("matando ando");
+    }
+
+    public override void EstadoMuerto()
+    {
+        base.EstadoMuerto();
+        UnityEngine.Debug.Log("muriendo endo");
+
+    }
+
+    public override void EstadoSeguir()
+    {
+        base.EstadoSeguir();
+        UnityEngine.Debug.Log("siguiendo endo");
     }
 }
 

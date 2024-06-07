@@ -7474,10 +7474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c52f38fb53d4b149999884daa3c4292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCharacter: {fileID: 11400000, guid: 4abeafd26b18fb948963d126ca6934ed, type: 2}
+  enemyCharacter: {fileID: 11400000, guid: 8ec4403ccf0959440b65e0247dda0bcf, type: 2}
   player: {fileID: 1830451499}
-  enemyCharacterData: {fileID: 11400000, guid: 4abeafd26b18fb948963d126ca6934ed, type: 2}
-  autoPlayer: 1
 --- !u!65 &1841443242
 BoxCollider:
   m_ObjectHideFlags: 0
