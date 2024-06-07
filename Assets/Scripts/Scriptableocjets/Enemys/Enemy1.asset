@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   estado: 0
-  distanciaSeguir: 1
-  distanciaAtacar: 0.5
+  distanciaSeguir: 1.28
+  distanciaAtacar: 0.97
   distanciaEscapar: 2
+  autoSeleccionPlayer: 1
+  target: {fileID: 0}
+  distancia: 7.543638
+  vivo: 1

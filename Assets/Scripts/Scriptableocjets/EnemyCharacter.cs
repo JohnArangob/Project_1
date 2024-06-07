@@ -11,13 +11,27 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemys/Base")]
 public class EnemyCharacter : ScriptableObject
 {
+    
     public Estados estado;
     //public Transform enemy;
     public float distanciaSeguir;
     public float distanciaAtacar;
     public float distanciaEscapar;
+    
+    public bool autoSeleccionPlayer = true;
+    public Transform target;
+    public float distancia;
 
-
+    public bool vivo = true;
+    public void Position()
+    {
+        if (autoSeleccionPlayer)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
+        
+    }
 
     public void CheckEstado()
     {
@@ -51,6 +65,7 @@ public class EnemyCharacter : ScriptableObject
             case Estados.attack:
                 break;
             case Estados.dead:
+                vivo = false;
                 break;
             default:
                 break;
@@ -59,19 +74,48 @@ public class EnemyCharacter : ScriptableObject
     }
     public virtual void EstadoIdle()
     {
-        return;
-    }
-    public virtual void EstadoAtacar()
-    {
+        if (distancia < distanciaSeguir)
+        {
+            CambairEstado(Estados.seguir);
+        }
         return;
     }
     public virtual void EstadoSeguir()
     {
+        if (distancia < distanciaAtacar)
+        {
+            CambairEstado(Estados.attack);
+        }
+        else if (distancia > distanciaEscapar)
+        {
+            CambairEstado(Estados.idle);
+        }
+        return;
+    }
+    public virtual void EstadoAtacar()
+    {
+        if (distancia > distanciaAtacar + 0.05f)
+        {
+            CambairEstado(Estados.seguir);
+        }
+
         return;
     }
     public virtual void EstadoMuerto()
     {
         return;
+    }
+
+   public IEnumerator CalculateDistance(Transform posicionenemigo)
+    {
+        while (vivo)
+        {
+            if (target != null)
+            {
+                distancia = Vector3.Distance(posicionenemigo.position ,target.transform.position);
+                yield return new WaitForSeconds(0.3f);
+            }
+        }
     }
 #if UNITY_EDITOR
     public void OnDrawGuizmosSelected(Transform enemy)

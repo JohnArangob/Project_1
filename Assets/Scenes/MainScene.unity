@@ -6104,15 +6104,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a61e56e349890b34284b26e3cfe74996, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.8
+      value: 26.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a61e56e349890b34284b26e3cfe74996, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 1.028
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a61e56e349890b34284b26e3cfe74996, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.02
+      value: 13.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a61e56e349890b34284b26e3cfe74996, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7456,7 +7456,7 @@ Transform:
   m_GameObject: {fileID: 1830451494}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.17, y: 1.267, z: 1.35}
+  m_LocalPosition: {x: 19.025, y: 1.309, z: 1.52}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7477,6 +7477,7 @@ MonoBehaviour:
   enemyCharacter: {fileID: 11400000, guid: 4abeafd26b18fb948963d126ca6934ed, type: 2}
   player: {fileID: 1830451499}
   enemyCharacterData: {fileID: 11400000, guid: 4abeafd26b18fb948963d126ca6934ed, type: 2}
+  autoPlayer: 1
 --- !u!65 &1841443242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8706,7 +8707,7 @@ Transform:
   m_GameObject: {fileID: 2011889093}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0.26}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.229}
   m_LocalScale: {x: 0.53154, y: 0.53154, z: 0.53154}
   m_ConstrainProportionsScale: 0
   m_Children: []
